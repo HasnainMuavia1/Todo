@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - ToDo App{% endblock %}
+
+{% block extra_css %}
+<style>
+    .auth-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 2.5rem;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-floating {
+        margin-bottom: 1rem;
+    }
+
+    .form-control {
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+    }
+
+    .form-control:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 4px var(--accent-color);
+    }
+
+    .btn-login {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        border: none;
+        border-radius: 12px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .btn-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+    }
+
+    .signup-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .signup-link:hover {
+        color: var(--secondary-color);
+    }
+
+    .separator {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #6b7280;
+        margin: 1.5rem 0;
+    }
+
+    .separator::before,
+    .separator::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .separator:not(:empty)::before {
+        margin-right: 1rem;
+    }
+
+    .separator:not(:empty)::after {
+        margin-left: 1rem;
+    }
+
+    .social-buttons .btn {
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .social-buttons .btn:hover {
+        background: #f9fafb;
+        transform: translateY(-2px);
+    }
+
+    .forgot-password {
+        font-size: 0.875rem;
+        color: #6b7280;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .forgot-password:hover {
+        color: var(--primary-color);
+    }
+
+    .welcome-text {
+        color: #374151;
+        font-size: 1.125rem;
+        margin-bottom: 2rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="auth-container">
+        <h2 class="text-center mb-3 fw-bold">Welcome back!</h2>
+        <p class="text-center welcome-text">Log in to continue your journey</p>
+        
+        <form id="loginForm" method="post">
+            {% csrf_token %}
+            <div class="form-floating">
+                <input type="text" class="form-control" name= 'username' id="username" placeholder="Username" required>
+                <label for="username">Username</label>
+            </div>
+            
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" name= 'password' id="password" placeholder="Password" required>
+                <label for="password">Password</label>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="remember">
+                    <label class="form-check-label" for="remember">
+                        Remember me
+                    </label>
+                </div>
+                <a href="#" class="forgot-password">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn btn-login w-100">Log In</button>
+        </form>
+        {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show mt-3" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                {{ field.label }}: {{ error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            {{ error }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+        <div class="separator">or continue with</div>
+
+        <div class="social-buttons d-flex gap-2">
+            <button class="btn w-50">
+                <i class="fab fa-google me-2"></i>
+                Google
+            </button>
+            <button class="btn w-50">
+                <i class="fab fa-github me-2"></i>
+                GitHub
+            </button>
+        </div>
+
+        <p class="text-center mt-4 mb-0">
+            Don't have an account? 
+            <a href="{% url 'signup' %}" class="signup-link">Sign up now</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{#<script>#}
+{#    document.getElementById('loginForm').addEventListener('submit', function(e) {#}
+{#        e.preventDefault();#}
+{#        // Add your form submission logic here#}
+{#        alert('Login form submitted!');#}
+{#    });#}
+{#</script>#}
+{% endblock %}

@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up - ToDo App{% endblock %}
+
+{% block extra_css %}
+<style>
+    .auth-container {
+        max-width: 460px;
+        margin: 0 auto;
+        padding: 2.5rem;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-label {
+        font-weight: 500;
+        color: #4b5563;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+    }
+
+    .form-control:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 4px var(--accent-color);
+    }
+
+    .btn-signup {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        border: none;
+        border-radius: 12px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .btn-signup:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+    }
+
+    .login-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .login-link:hover {
+        color: var(--secondary-color);
+    }
+
+    .form-floating > label {
+        padding: 0.75rem 1rem;
+    }
+
+    .form-floating > .form-control {
+        padding: 0.75rem 1rem;
+        height: calc(3.5rem + 2px);
+    }
+
+    .separator {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #6b7280;
+        margin: 1.5rem 0;
+    }
+
+    .separator::before,
+    .separator::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .separator:not(:empty)::before {
+        margin-right: 1rem;
+    }
+
+    .separator:not(:empty)::after {
+        margin-left: 1rem;
+    }
+
+    .social-buttons .btn {
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .social-buttons .btn:hover {
+        background: #f9fafb;
+        transform: translateY(-2px);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="auth-container">
+        <h2 class="text-center mb-4 fw-bold">Create your account</h2>
+        <form id="signupForm" method="post" action="">
+            {% csrf_token %}
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" name= 'firstname' id="firstName" placeholder="First Name" required>
+                        <label for="firstName">First Name</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" name= 'lastname' id="lastName" placeholder="Last Name" required>
+                        <label for="lastName">Last Name</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" name= 'username' id="username" placeholder="Username" required>
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input type="email" class="form-control" name= 'email' id="email" placeholder="Email" required>
+                        <label for="email">Email address</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input type="password" class="form-control" name= 'password' id="password" placeholder="Password" required>
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-signup w-100">Create Account</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="separator">or continue with</div>
+
+        <div class="social-buttons d-flex gap-2">
+            <button class="btn w-50">
+                <i class="fab fa-google me-2"></i>
+                Google
+            </button>
+            <button class="btn w-50">
+                <i class="fab fa-github me-2"></i>
+                GitHub
+            </button>
+        </div>
+
+        <p class="text-center mt-4 mb-0">
+            Already have an account?
+            <a href="{% url 'login' %}" class="login-link">Sign in</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  
+</script>
+{% endblock %}
