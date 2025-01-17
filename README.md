@@ -40,13 +40,13 @@ A sleek, modern Todo application built with Django, featuring user authenticatio
 
 - Python 3.8 or higher
 - pip (Python package manager)
-- Virtual environment (recommended)
+
 
 ## 🛠️ Installation
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/todo-app.git
+git clone https://github.com/HasnainMuavia1/todo.git
 cd todo-app
 ```
 
@@ -66,11 +66,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-4. Create .env file
-```bash
-cp .env.example .env
-# Update .env with your configuration
-```
 
 5. Run migrations
 ```bash
@@ -97,52 +92,16 @@ todo_project/
 │
 ├── todo/                    # Main application directory
 │   ├── migrations/         # Database migrations
-│   ├── static/            # Static files (CSS, JS, Images)
 │   ├── templates/         # HTML templates
-│   ├── forms.py          # Form definitions
 │   ├── models.py         # Database models
 │   ├── urls.py           # URL configurations
 │   ├── views.py          # View logic
 │   └── apps.py           # App configuration
 │
-├── static/                # Project-wide static files
 ├── templates/            # Project-wide templates
 ├── manage.py             # Django management script
 ├── requirements.txt      # Project dependencies
 └── README.md            # Project documentation
-```
-
-## 🔧 Configuration
-
-### Environment Variables
-
-Create a `.env` file in the project root and add the following:
-
-```env
-DEBUG=True
-SECRET_KEY=your-secret-key
-DATABASE_URL=sqlite:///db.sqlite3
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_HOST_USER=your-email@gmail.com
-EMAIL_HOST_PASSWORD=your-email-password
-```
-
-### Database Configuration
-
-The project uses SQLite by default. To use PostgreSQL, update your database configuration in settings.py:
-
-```python
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'your_db_name',
-        'USER': 'your_db_user',
-        'PASSWORD': 'your_db_password',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
 ```
 
 ## 📱 Usage
@@ -181,8 +140,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 Hasnain Muavia
-- GitHub: [@yourgithubusername](https://github.com/yourgithubusername)
-- LinkedIn: [Your Name](https://linkedin.com/in/yourprofile)
+- GitHub: [@HasnainMuavia1](https://github.com/HasnainMuavia1)
+- LinkedIn: [Hasnain Muavia]([https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/hasnain-muavia-umt2004/))
 
 ## 🙏 Acknowledgments
 
@@ -191,16 +150,6 @@ Hasnain Muavia
 - Django team for the excellent documentation
 - All contributors who help to improve this project
 
-## 📸 Screenshots
-
-[Add your application screenshots here]
-
-## 🐛 Bug Reports
-
-If you discover any bugs, feel free to create an issue on the GitHub repository. Please include:
-- Your operating system name and version
-- Any details about your local setup that might be helpful in troubleshooting
-- Detailed steps to reproduce the bug
 
 ## 🎯 Future Improvements
 
